@@ -2,7 +2,7 @@
  ============================================================================
  Name        : Writer.c
  Author      : 
- Version     :
+ Version     : 0.0.1
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
  ============================================================================

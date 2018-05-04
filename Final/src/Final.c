@@ -1,8 +1,8 @@
 /*
  ============================================================================
  Name        : Final.c
- Author      : 
- Version     :
+ Author      : Olman
+ Version     : 0.0.0
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
  ============================================================================

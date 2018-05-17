@@ -14,6 +14,7 @@ typedef struct Nodo
   sem_t *semaforo_1;
   int *sms;
   int *estado;
+  int *proceso;
   int *finalizar;
   pthread_t hilo;
   struct Nodo *siguiente;
@@ -42,7 +43,7 @@ Nodo * crear_nodo(int dato_pid,int * estado_i,int * sms_i,int * finalizar_i ,sem
 	dato->sms=sms_i;
 
 	dato->estado_actual = 0;
-
+	dato->proceso=1;
 	dato->estado=estado_i;
 	dato->finalizar=finalizar_i;
 	dato->semaforo_1=sem_1;

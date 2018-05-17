@@ -87,7 +87,11 @@ int main(int argc, int *argv[]) {
 	dato[0] = largo_1;
 	dato[1] = largo_2;
 
-	sem_t * sem_1 = sem_open("SEM", O_CREAT, 0644, 1);
+	sem_t * sem_1 = sem_open("SEM_1",
+            O_CREAT, S_IRUSR | S_IWUSR, 1);
+
+	sem_t * sem_2 = sem_open("SEM_2",
+            O_CREAT, S_IRUSR | S_IWUSR, 1);
 
 
 	exit (1);

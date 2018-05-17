@@ -57,9 +57,13 @@ int main(int argc, int *argv[]) {
     shmctl(shmid_2,IPC_RMID,NULL);
     shmctl(shmid_3,IPC_RMID,NULL);
 
-    sem_t *psem_1=sem_open("SEM", 0,0664);
+    sem_t *psem_1=sem_open("SEM_1", 0);
 
     sem_close(psem_1);
-    sem_unlink("SEM_7");
+    sem_unlink("SEM_1");
+    sem_t *psem_2=sem_open("SEM_2", 0);
+
+    sem_close(psem_2);
+    sem_unlink("SEM_2");
     exit (1);
 }

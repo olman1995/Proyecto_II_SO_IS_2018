@@ -1,9 +1,9 @@
 typedef struct Configuracion{
 	int lineas;
 	int largo_linea;
-	int readers;
-	int readers_max;
-	int readers_init;
+	int readers_selfish;
+	int readers_selfish_max;
+	int readers_selfish_init;
 	int tiempo_dormir;
 	int tiempo_escribir;
 }Configuracion;
@@ -66,9 +66,9 @@ Configuracion * crear_configuracion(
 
 	configuracion->lineas=lineas;
 	configuracion->largo_linea=largo_linea;
-	configuracion->readers=readers;
-	configuracion->readers_max=readers_max;
-	configuracion->readers_init=readers_init;
+	configuracion->readers_selfish=readers;
+	configuracion->readers_selfish_max=readers_max;
+	configuracion->readers_selfish_init=readers_init;
 	configuracion->tiempo_dormir=tiempo_dormir;
 	configuracion->tiempo_escribir=tiempo_escribir;
 

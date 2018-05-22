@@ -1,7 +1,7 @@
 void estado(Nodo *nodo,int estado){
 	nodo->estado_actual=estado;
-	//nodo->estado[nodo->writers_init+nodo->pid*2]=nodo->pid;
-	//nodo->estado[nodo->writers_init+nodo->pid*2+1]=estado;
+	nodo->estado[nodo->configuracion->readers_selfish_init+((nodo->pid-1)*3)]=nodo->pid;
+	nodo->estado[nodo->configuracion->readers_selfish_init+((nodo->pid-1)*3)+1]=estado;
 }
 
 void semaforo(Nodo *nodo){

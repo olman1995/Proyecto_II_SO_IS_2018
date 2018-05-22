@@ -91,8 +91,8 @@ int main(int argc, int *argv[]) {
     int lineas=estado[1];
 	int largo_linea=estado[2];
 	int readers=cantidad;
-	int readers_max=estado[5];
-	int readers_init=estado[8];
+	int readers_max=estado[6];
+	int readers_init=estado[9];
 	sem_post(psem_2);
 	Configuracion * configuracion;
 	configuracion=crear_configuracion(lineas,largo_linea,readers,readers_max,readers_init,tiempo_dormir,tiempo_escribir);

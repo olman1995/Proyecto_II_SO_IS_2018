@@ -22,17 +22,22 @@ int main(int argc, int *argv[]) {
 
 	//int lineas = strtol(argv[1], NULL, 10);
 	int lineas = 20;
-	int largo_linea = 5;
+	int largo_linea = 10;
 	int tamano = lineas * largo_linea;
 
 	//memoria compartidad
 	int largo_1 = sizeof(int )*tamano;
 	key_t shmkey_1=0x1234561;
 	int shmid_1;
+	int *sms;
     shmid_1 = shmget (shmkey_1, largo_1, 0664 | IPC_CREAT);
     if (shmid_1 < 0){
         perror ("shmget\n");
         exit (1);
+    }
+    sms = (int *)shmat(shmid_1, NULL, 0);
+    for(int i=0;i<lineas;i++){
+		sms[i*largo_linea]=i;
     }
 
     //estados

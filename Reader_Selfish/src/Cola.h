@@ -6,6 +6,7 @@ typedef struct Configuracion{
 	int readers_selfish_init;
 	int tiempo_dormir;
 	int tiempo_escribir;
+	FILE *f;
 }Configuracion;
 
 typedef struct Nodo

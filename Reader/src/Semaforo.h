@@ -29,6 +29,9 @@ void semaforo(Nodo *nodo){
 					nodo->anno=nodo->sms[i*nodo->configuracion->largo_linea+7];
 					nodo->sms_1=nodo->sms[i*nodo->configuracion->largo_linea+8];
 					nodo->sms_2=nodo->sms[i*nodo->configuracion->largo_linea+9];
+					escribir_bitacora(nodo->configuracion->f,nodo->pid,nodo->hora,nodo->minuto,
+												nodo->dia,nodo->mes,nodo->anno,nodo->sms_1,nodo->sms_2);
+
 					cambio=0;
 
 				}else{

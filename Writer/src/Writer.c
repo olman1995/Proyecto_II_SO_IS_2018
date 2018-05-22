@@ -16,20 +16,34 @@
 #include <fcntl.h>
 #include <semaphore.h>
 #include <pthread.h>
+#include <time.h>
 
 #include "Cola.h"
 #include "Semaforo.h"
 #include "CrearEscritores.h"
 #include "Hilo.h"
-
+#include "bitacora.h"
 
 int main(int argc, int *argv[]) {
 	//datos iniciales
+	int cantidad;
+	int tiempo_dormir;
+	int tiempo_escribir;
 	int final=1;
+
 	int * pfinal=&final;
-	//cantidad de procesos
-	//int cantidad = strtol(argv[1], NULL, 10);
-	int cantidad = 5;
+
+	//parametros
+	if(argc>2){
+		cantidad=strtol(argv[1], NULL, 10);
+		tiempo_escribir=strtol(argv[1], NULL, 10);
+		tiempo_dormir=strtol(argv[1], NULL, 10);
+	}else{
+		cantidad = 5;
+		tiempo_escribir=2;
+		tiempo_escribir=2;
+	}
+
 
 	//cola
 	Cola * cola = (Cola*)malloc(sizeof(Cola));
@@ -83,9 +97,14 @@ int main(int argc, int *argv[]) {
 	int writers_init=estado[7];
 	sem_post(psem_2);
 
-	crear_escritor(cola,cantidad,estado,sms,pfinal,psem_1,
-    		lineas,largo_linea,writers,writers_max,writers_init);
 
+
+
+	Configuracion * configuracion;
+
+	configuracion=crear_configuracion(lineas,largo_linea,writers,writers_max,
+					writers_init,tiempo_dormir,tiempo_escribir);
+	crear_escritor(cola,cantidad,estado,sms,pfinal,psem_1,configuracion);
 
     Nodo * actual;
 

@@ -1,16 +1,20 @@
+typedef struct Configuracion{
+	int lineas;
+	int largo_linea;
+	int writers;
+	int writers_max;
+	int writers_init;
+	int tiempo_dormir;
+	int tiempo_escribir;
+	FILE *f;
+}Configuracion;
 
 typedef struct Nodo
 {
 
   int pid;
-  int lineas;
-  int largo_linea;
-  int writers;
-  int writers_max;
-  int writers_init;
-
   int estado_actual;
-
+  struct Configuracion * configuracion;
   sem_t *semaforo_1;
   int *sms;
   int *estado;
@@ -35,30 +39,30 @@ typedef struct Cola{
 	int writers_max;
 	int writers_init;
 }Cola;
-Nodo * crear_nodo(int dato_pid,int * estado_i,int * sms_i,int * finalizar_i ,sem_t * sem_1,
-		int lineas,int largo_linea,int writers,int writers_max, int writers_init){
-	Nodo *dato;
-	dato=(Nodo*)malloc(sizeof(Nodo));
-	dato->pid=dato_pid;
-	dato->sms=sms_i;
 
-	dato->estado_actual = 0;
-	dato->proceso=1;
-	dato->estado=estado_i;
-	dato->finalizar=finalizar_i;
-	dato->semaforo_1=sem_1;
-	dato->lineas=lineas;
-	dato->largo_linea=largo_linea;
-	dato->writers=writers;
-	dato->writers_max=writers_max;
-	dato->writers_init=writers_init;
-	dato->siguiente=NULL;
+Configuracion * crear_configuracion(
+		int lineas,
+		int largo_linea,
+		int writers,
+		int writers_max,
+		int writers_init,
+		int tiempo_dormir,
+		int tiempo_escribir){
+	Configuracion * configuracion;
+	configuracion=(Configuracion*)malloc(sizeof(Configuracion));
 
-	return dato;
+	configuracion->lineas=lineas;
+	configuracion->largo_linea=largo_linea;
+	configuracion->writers=writers;
+	configuracion->writers_max=writers_max;
+	configuracion->writers_init=writers_init;
+	configuracion->tiempo_dormir=tiempo_dormir;
+	configuracion->tiempo_escribir=tiempo_escribir;
+
+	return configuracion;
 }
 
-void insertar(Cola *cola, int dato_pid,int * estado_i,int * sms_i,int * finalizar_i ,sem_t * sem_1,
-		int lineas,int largo_linea,int writers,int writers_max, int writers_init)
+void insertar(Cola *cola, int dato_pid,int * estado_i,int * sms_i,int * finalizar_i ,sem_t * sem_1,Configuracion * configuracion)
 {
   Nodo *dato;
   dato=(Nodo*)malloc(sizeof(Nodo));
@@ -67,12 +71,9 @@ void insertar(Cola *cola, int dato_pid,int * estado_i,int * sms_i,int * finaliza
   dato->estado=estado_i;
   dato->finalizar=finalizar_i;
   dato->semaforo_1=sem_1;
-  dato->lineas=lineas;
-  dato->largo_linea=largo_linea;
-  dato->writers=writers;
-  dato->writers_max=writers_max;
-  dato->writers_init=writers_init;
+  dato->configuracion=configuracion;
   dato->siguiente=NULL;
+
   if(cola->fin==NULL){
 	  cola->fin=dato;
 	  cola->inicio=dato;
@@ -98,4 +99,3 @@ void imprimir(Cola *cola){
 		actual = actual->siguiente;
 	}
 }
-

@@ -19,7 +19,7 @@ void ejecutar_hilo(Nodo *nodo){
 	pthread_join( nodo->hilo, 0);
 }
 
-void * modificar_estado(void * cola_i){
+void * mostrar_estado(void * cola_i){
 
 	Cola * cola;
 	cola = (Cola *) cola_i;
@@ -45,7 +45,7 @@ void * modificar_estado(void * cola_i){
 void iniciar_hilo_estado(Cola *cola){
 	int retorno;
 
-	retorno = pthread_create(&cola->hilo,NULL,&modificar_estado,(void*)cola);
+	retorno = pthread_create(&cola->hilo,NULL,&mostrar_estado,(void*)cola);
 	if(retorno){
 		fprintf(stderr,"Error - pthread_create() return code: %d\n",retorno);
 	}

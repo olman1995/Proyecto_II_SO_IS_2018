@@ -14,7 +14,9 @@ void semaforo(Nodo *nodo){
 	int pid;
 	int sms_1;
 	int sms_2;
+
 	sem_wait (nodo->semaforo_1);
+
 	for(int i=0;i<(nodo->configuracion->lineas);i++){
 		if(cambio == 1){
 			if(nodo->sms[i*nodo->configuracion->largo_linea+2]==0){
@@ -38,9 +40,10 @@ void semaforo(Nodo *nodo){
 			}
 		}
 	}
-		estado(nodo,2);
-		sleep(nodo->configuracion->tiempo_escribir);
-		sem_post (nodo->semaforo_1);
+	estado(nodo,2);
+	sleep(nodo->configuracion->tiempo_escribir);
+	sem_post (nodo->semaforo_1);
+
 	estado(nodo,3);
 	sleep(nodo->configuracion->tiempo_dormir);
 }

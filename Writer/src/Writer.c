@@ -25,6 +25,9 @@
 #include "bitacora.h"
 
 int main(int argc, int *argv[]) {
+
+	int p_pid;
+	p_pid=getpid();
 	//datos iniciales
 	int cantidad;
 	int tiempo_dormir;
@@ -35,13 +38,13 @@ int main(int argc, int *argv[]) {
 
 	//parametros
 	if(argc>2){
-		cantidad=strtol(argv[1], NULL, 10);
-		tiempo_escribir=strtol(argv[1], NULL, 10);
-		tiempo_dormir=strtol(argv[1], NULL, 10);
+		cantidad =strtol(argv[1], NULL, 10);
+		tiempo_escribir = strtol(argv[2], NULL, 10);
+		tiempo_dormir = strtol(argv[3], NULL, 10);
 	}else{
 		cantidad = 5;
 		tiempo_escribir=2;
-		tiempo_escribir=2;
+		tiempo_dormir=2;
 	}
 
 
@@ -94,6 +97,7 @@ int main(int argc, int *argv[]) {
 	int largo_linea=estado[2];
 	int writers=cantidad;
 	int writers_max=estado[4];
+	estado[10]=p_pid;
 	int writers_init=estado[7];
 	sem_post(psem_2);
 
@@ -104,6 +108,7 @@ int main(int argc, int *argv[]) {
 
 	configuracion=crear_configuracion(lineas,largo_linea,writers,writers_max,
 					writers_init,tiempo_dormir,tiempo_escribir);
+	fclose(fopen("log_writer.html", "w"));
 	crear_escritor(cola,cantidad,estado,sms,pfinal,psem_1,configuracion);
 
     Nodo * actual;

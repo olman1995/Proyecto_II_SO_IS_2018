@@ -1,7 +1,7 @@
 void *enviar_sms( void *nodo ){
 		 Nodo *nodo_i;
 	     nodo_i = (Nodo *) nodo;
-	     while(nodo_i->finalizar){
+	     while(1){
 	    	 semaforo(nodo_i);
 	     }
 }
@@ -31,12 +31,6 @@ void * mostrar_estado(void * cola_i){
 		printf("Estado escritores \n");
 		printf("*****************************************\n");
 		imprimir(cola);
-		sem_wait(cola->semaforo_1);
-
-		//printf("final %d \n",cola->estado[0]);
-		cola->finalizar=cola->estado[0];
-
-		sem_post(cola->semaforo_1);
 		sleep(1);
 	}
 

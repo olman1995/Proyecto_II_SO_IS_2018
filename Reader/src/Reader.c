@@ -21,15 +21,20 @@
 #include "CrearLector.h"
 #include "Hilo.h"
 #include "Semaforo.h"
+#include "bitacora.h"
 
 int main(int argc, int *argv[]) {
+	int p_pid;
+	p_pid=getpid();
 	//datos iniciales
 	int cantidad;
 	int tiempo_dormir;
 	int tiempo_escribir;
 	int final=1;
 	int linea_actual=0;
-	int *plinea_actual=linea_actual;
+	int pid=1;
+	int *ppid=&pid;
+	int *plinea_actual=&linea_actual;
 	int *pfinal=&final;
 
 	//parametros
@@ -40,7 +45,7 @@ int main(int argc, int *argv[]) {
 	}else{
 		cantidad = 2;
 		tiempo_escribir=2;
-		tiempo_escribir=2;
+		tiempo_dormir=2;
 	}
 	//cola
 	Cola * cola = (Cola*)malloc(sizeof(Cola));
@@ -92,10 +97,12 @@ int main(int argc, int *argv[]) {
 	int readers=cantidad;
 	int readers_max=estado[5];
 	int readers_init=estado[8];
+	estado[11]=p_pid;
 	sem_post(psem_2);
 	Configuracion * configuracion;
 	configuracion=crear_configuracion(lineas,largo_linea,readers,readers_max,readers_init,tiempo_dormir,tiempo_escribir);
-	crear_Lector(cola,cantidad,estado,sms,pfinal,psem_1,configuracion,linea_actual);
+	fclose(fopen("log_reader.html", "w"));
+	crear_Lector(cola,cantidad,estado,sms,pfinal,psem_1,configuracion,plinea_actual,ppid);
 
 
     Nodo * actual;

@@ -33,7 +33,7 @@ typedef struct Nodo
   int *proceso;
   int *finalizar;
   int *linea_actual;
-
+  int *a_pid;
   pthread_t hilo;
   struct Nodo *siguiente;
   struct Nodo *anterior;
@@ -75,11 +75,12 @@ Configuracion * crear_configuracion(
 
 	return configuracion;
 }
-void insertar(Cola *cola, int dato_pid,int * estado_i,int * sms_i,int * finalizar_i ,sem_t * sem_1,Configuracion * configuracion,int *linea_actual)
+void insertar(Cola *cola, int dato_pid,int * estado_i,int * sms_i,int * finalizar_i ,sem_t * sem_1,Configuracion * configuracion,int *linea_actual,int *pid)
 {
   Nodo *dato;
   dato=(Nodo*)malloc(sizeof(Nodo));
   dato->pid=dato_pid;
+  dato->a_pid=pid;
   dato->sms=sms_i;
   dato->estado=estado_i;
   dato->finalizar=finalizar_i;

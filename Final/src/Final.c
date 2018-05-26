@@ -16,6 +16,9 @@
 #include <fcntl.h>
 #include <semaphore.h>
 #include <pthread.h>
+#include <signal.h>
+
+#include "bitacora.h"
 
 int main(int argc, int *argv[]) {
 
@@ -52,18 +55,33 @@ int main(int argc, int *argv[]) {
 	estado = (int *)shmat(shmid_2, 0, 0);
 	estado[0] = 0;
 
-    //sleep(10);
+	int writer_pid= estado[10];
+	int reader_pid= estado[11];
+	int reader_selfish_pid= estado[12];
+
     shmctl(shmid_1,IPC_RMID,NULL);
     shmctl(shmid_2,IPC_RMID,NULL);
     shmctl(shmid_3,IPC_RMID,NULL);
 
     sem_t *psem_1=sem_open("SEM_1", 0);
-
     sem_close(psem_1);
     sem_unlink("SEM_1");
-    sem_t *psem_2=sem_open("SEM_2", 0);
 
+    sem_t *psem_2=sem_open("SEM_2", 0);
     sem_close(psem_2);
     sem_unlink("SEM_2");
+
+    fclose(fopen("../../bitacora.html", "w"));
+    FILE *f;
+    escribir_bitacora(f);
+	if(writer_pid != 0)
+		kill(writer_pid,SIGINT);
+
+	if(reader_pid != 0)
+		kill(reader_pid,SIGINT);
+
+	if(writer_pid != 0)
+		kill(reader_selfish_pid,SIGINT);
+
     exit (1);
 }

@@ -22,8 +22,11 @@
 #include "CrearLectorEgoista.h"
 #include "Hilo.h"
 #include "Semaforo.h"
+#include "bitacora.h"
 
 int main(int argc, int *argv[]) {
+	int p_pid;
+	p_pid=getpid();
 	//datos iniciales
 	int cantidad;
 	int tiempo_dormir;
@@ -41,7 +44,7 @@ int main(int argc, int *argv[]) {
 	}else{
 		cantidad = 2;
 		tiempo_escribir=2;
-		tiempo_escribir=2;
+		tiempo_dormir=2;
 	}
 	//cola
 	Cola * cola = (Cola*)malloc(sizeof(Cola));
@@ -93,8 +96,10 @@ int main(int argc, int *argv[]) {
 	int readers=cantidad;
 	int readers_max=estado[6];
 	int readers_init=estado[9];
+	estado[12]=p_pid;
 	sem_post(psem_2);
 	Configuracion * configuracion;
+	fclose(fopen("log_reader_selfish.html", "w"));
 	configuracion=crear_configuracion(lineas,largo_linea,readers,readers_max,readers_init,tiempo_dormir,tiempo_escribir);
 	crear_Lector_egoista(cola,cantidad,estado,sms,pfinal,psem_1,configuracion,linea_actual);
 

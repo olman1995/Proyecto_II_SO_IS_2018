@@ -24,7 +24,7 @@ void * mostrar_estado(void * cola_i){
 	Cola * cola;
 	cola = (Cola *) cola_i;
 
-	while(cola->finalizar){
+	while(1){
 
 		printf("\033[H\033[J");
 		printf("*****************************************\n");

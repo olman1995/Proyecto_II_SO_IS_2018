@@ -99,7 +99,10 @@ int main(int argc, int *argv[]) {
 
 	sem_t * sem_2 = sem_open("SEM_2",
             O_CREAT, S_IRUSR | S_IWUSR, 1);
-
+	printf("\033[H\033[J");
+	printf("*****************************************\n");
+	printf("Inicializador \n");
+	printf("*****************************************\n");
 
 	exit (1);
 }

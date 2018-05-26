@@ -95,6 +95,8 @@ void imprimir(Cola *cola){
 			printf("PID: %d estado Memoria \n",actual->pid);
 		}else if(actual->estado_actual == 3){
 			printf("PID: %d estado Dormido \n",actual->pid);
+		}else if(actual->estado_actual == 4){
+			printf("PID: %d estado Bloqueado \n",actual->pid);
 		}
 		actual = actual->siguiente;
 	}

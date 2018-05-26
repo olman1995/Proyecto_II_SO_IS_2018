@@ -87,7 +87,19 @@ int main(void) {
 	printf("*****************************************\n");
 	for(int i=0;i<writers_max;i++){
 		if(estado[writers_init+i*2]!=0){
-			printf("PID %d estado %d \n",estado[writers_init+(i*2)],estado[writers_init+(i*2)+1]);
+			if(estado[writers_init+i*2]!=0){
+				if(estado[writers_init+i*2+1] == 0){
+					printf("PID %d estado Normal \n",estado[writers_init+i*2]);
+				}else if(estado[writers_init+i*2+1] == 1){
+						printf("PID %d estado Bloqueado \n",estado[writers_init+i*2]);
+				}else if(estado[writers_init+i*2+1] == 2){
+					printf("PID %d estado Memoria \n",estado[writers_init+i*2]);
+				}else if(estado[writers_init+i*2+1] == 3){
+					printf("PID %d estado Dormido \n",estado[writers_init+i*2]);
+				}else if(estado[writers_init+i*2+1] == 4){
+					printf("PID %d estado Memoria sin lineas \n",estado[writers_init+i*2]);
+				}
+			}
 		}
 	}
 	printf(" \n");
@@ -96,7 +108,17 @@ int main(void) {
 	printf("*****************************************\n");
 	for(int i=0;i<readers_max;i++){
 		if(estado[readers_init+i*2]!=0){
-			printf("PID %d estado %d \n",estado[readers_init+i*2],estado[readers_init+i*2+1]);
+			if(estado[readers_init+i*2+1] == 0){
+				printf("PID %d estado Normal \n",estado[readers_init+i*2]);
+			}else if(estado[readers_init+i*2+1] == 1){
+					printf("PID %d estado Bloqueado \n",estado[readers_init+i*2]);
+			}else if(estado[readers_init+i*2+1] == 2){
+				printf("PID %d estado Memoria \n",estado[readers_init+i*2]);
+			}else if(estado[readers_init+i*2+1] == 3){
+				printf("PID %d estado Dormido \n",estado[readers_init+i*2]);
+			}else if(estado[readers_init+i*2+1] == 4){
+				printf("PID %d estado Memoria sin lineas \n",estado[readers_init+i*2]);
+			}
 		}
 	}
 	printf(" \n");
@@ -105,7 +127,17 @@ int main(void) {
 	printf("*****************************************\n");
 	for(int i=0;i<readers_selfish_max;i++){
 		if(estado[readers_selfish_init+i*2]!=0){
-			printf("PID %d estado %d \n",estado[readers_selfish_init+i*2],estado[readers_selfish_init+i*2+1]);
+			if(estado[readers_selfish_init+i*2+1] == 0){
+				printf("PID %d estado Normal \n",estado[readers_selfish_init+i*2]);
+			}else if(estado[readers_selfish_init+i*2+1] == 1){
+				printf("PID %d estado Bloqueado \n",estado[readers_selfish_init+i*2]);
+			}else if(estado[readers_selfish_init+i*2+1] == 2){
+				printf("PID %d estado Memoria \n",estado[readers_selfish_init+i*2]);
+			}else if(estado[readers_selfish_init+i*2+1] == 3){
+				printf("PID %d estado Dormido \n",estado[readers_selfish_init+i*2]);
+			}else if(estado[readers_selfish_init+i*2+1] == 4){
+				printf("PID %d estado Memoria sin lineas \n",estado[readers_selfish_init+i*2]);
+			}
 		}
 	}
 	printf(" \n");
@@ -114,23 +146,23 @@ int main(void) {
 	printf("*****************************************\n");
 	for(int i=0;i<writers_max;i++){
 		if(estado[writers_init+i*2]!=0){
-			if(estado[writers_init+(i*2)+1] == 0){
-				printf("PID %d estado %d \n",estado[writers_init+(i*2)],estado[writers_init+(i*2)+1]);
+			if(estado[writers_init+(i*2)+1] == 1){
+				printf("PID %d writer  \n",estado[writers_init+(i*2)]);
 			}
 
 		}
 	}
 	for(int i=0;i<readers_max;i++){
 		if(estado[readers_init+i*2]!=0){
-			if(estado[readers_init+i*2+1] == 0){
-				printf("PID %d estado %d \n",estado[readers_init+i*2],estado[readers_init+i*2+1]);
+			if(estado[readers_init+i*2+1] == 1){
+				printf("PID %d reader \n",estado[readers_init+i*2]);
 			}
 		}
 	}
 	for(int i=0;i<readers_selfish_max;i++){
 		if(estado[readers_selfish_init+i*2]!=0){
-			if(estado[readers_selfish_init+i*2+1] == 0){
-				printf("PID %d estado %d \n",estado[readers_selfish_init+i*2],estado[readers_selfish_init+i*2+1]);
+			if(estado[readers_selfish_init+i*2+1] == 1){
+				printf("PID %d reader selfish \n",estado[readers_selfish_init+i*2]);
 			}
 		}
 	}
@@ -140,23 +172,23 @@ int main(void) {
 	printf("*****************************************\n");
 	for(int i=0;i<writers_max;i++){
 		if(estado[writers_init+i*2]!=0){
-			if(estado[writers_init+(i*2)+1] == 1){
-				printf("PID %d estado %d \n",estado[writers_init+(i*2)],estado[writers_init+(i*2)+1]);
+			if(estado[writers_init+(i*2)+1] == 2){
+				printf("PID %d writer \n",estado[writers_init+(i*2)]);
 			}
 
 		}
 	}
 	for(int i=0;i<readers_max;i++){
 		if(estado[readers_init+i*2]!=0){
-			if(estado[readers_init+i*2+1] == 1){
-				printf("PID %d estado %d \n",estado[readers_init+i*2],estado[readers_init+i*2+1]);
+			if(estado[readers_init+i*2+1] == 2){
+				printf("PID %d reader\n",estado[readers_init+i*2]);
 			}
 		}
 	}
 	for(int i=0;i<readers_selfish_max;i++){
 		if(estado[readers_selfish_init+i*2]!=0){
-			if(estado[readers_selfish_init+i*2+1] == 1){
-				printf("PID %d estado %d \n",estado[readers_selfish_init+i*2],estado[readers_selfish_init+i*2+1]);
+			if(estado[readers_selfish_init+i*2+1] == 2){
+				printf("PID %d reader selfish \n",estado[readers_selfish_init+i*2]);
 			}
 		}
 	}
@@ -166,7 +198,7 @@ int main(void) {
 	for(int i=0;i<writers_max;i++){
 		if(estado[writers_init+i*2]!=0){
 			if(estado[writers_init+(i*2)+1] == 3){
-				printf("PID %d estado %d \n",estado[writers_init+(i*2)],estado[writers_init+(i*2)+1]);
+				printf("PID %d writer \n",estado[writers_init+(i*2)]);
 			}
 
 		}
@@ -174,14 +206,14 @@ int main(void) {
 	for(int i=0;i<readers_max;i++){
 		if(estado[readers_init+i*2]!=0){
 			if(estado[readers_init+i*2+1] == 3){
-				printf("PID %d estado %d \n",estado[readers_init+i*2],estado[readers_init+i*2+1]);
+				printf("PID %d reader \n",estado[readers_init+i*2]);
 			}
 		}
 	}
 	for(int i=0;i<readers_selfish_max;i++){
 		if(estado[readers_selfish_init+i*2]!=0){
 			if(estado[readers_selfish_init+i*2+1] == 3){
-				printf("PID %d estado %d \n",estado[readers_selfish_init+i*2],estado[readers_selfish_init+i*2+1]);
+				printf("PID %d reader selfish\n",estado[readers_selfish_init+i*2]);
 			}
 		}
 	}

@@ -28,15 +28,9 @@ void * mostrar_estado(void * cola_i){
 
 		printf("\033[H\033[J");
 		printf("*****************************************\n");
-		printf("Estado escritores \n");
+		printf("Estado Readers selfish \n");
 		printf("*****************************************\n");
 		imprimir(cola);
-		sem_wait(cola->semaforo_1);
-
-		//printf("final %d \n",cola->estado[0]);
-		cola->finalizar=cola->estado[0];
-
-		sem_post(cola->semaforo_1);
 		sleep(1);
 	}
 

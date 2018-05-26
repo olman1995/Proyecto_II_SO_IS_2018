@@ -110,6 +110,8 @@ void imprimir(Cola *cola){
 					actual->dia,actual->mes,actual->anno,actual->sms_1,actual->sms_2);
 		}else if(actual->estado_actual == 3){
 			printf("PID: %d estado Dormido \n",actual->pid);
+		}else if(actual->estado_actual == 4){
+			printf("PID: %d estado No hay informacion que leer \n",actual->pid);
 		}
 		actual = actual->siguiente;
 	}

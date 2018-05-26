@@ -40,8 +40,8 @@ int main(int argc, int *argv[]) {
 	//parametros
 	if(argc>2){
 		cantidad=strtol(argv[1], NULL, 10);
-		tiempo_escribir=strtol(argv[1], NULL, 10);
-		tiempo_dormir=strtol(argv[1], NULL, 10);
+		tiempo_escribir=strtol(argv[2], NULL, 10);
+		tiempo_dormir=strtol(argv[3], NULL, 10);
 	}else{
 		cantidad = 2;
 		tiempo_escribir=2;

@@ -37,11 +37,17 @@ void semaforo(Nodo *nodo){
 				escribir_bitacora(nodo->configuracion->f,pid,tm.tm_hour,tm.tm_min,
 									tm.tm_mday,tm.tm_mon+1,tm.tm_year+1900,sms_1,sms_2);
 				cambio=0;
+				estado(nodo,2);
+				sleep(nodo->configuracion->tiempo_escribir);
+			}else{
+				estado(nodo,4);
 			}
+		}else{
+			estado(nodo,4);
 		}
 	}
-	estado(nodo,2);
-	sleep(nodo->configuracion->tiempo_escribir);
+
+
 	sem_post (nodo->semaforo_1);
 
 	estado(nodo,3);

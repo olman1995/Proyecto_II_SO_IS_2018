@@ -74,6 +74,10 @@ int main(int argc, int *argv[]) {
     fclose(fopen("../../bitacora.html", "w"));
     FILE *f;
     escribir_bitacora(f);
+	printf("\033[H\033[J");
+	printf("*****************************************\n");
+	printf("Finalizador \n");
+	printf("*****************************************\n");
 	if(writer_pid != 0)
 		kill(writer_pid,SIGINT);
 

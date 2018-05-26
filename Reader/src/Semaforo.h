@@ -14,8 +14,6 @@ void semaforo(Nodo *nodo){
 
 
 	pthread_mutex_lock(&lock);
-	//	printf("test 2 %d \n",*nodo->linea_actual);
-
 
 	int i=*nodo->linea_actual;
 	if(nodo->sms[i*nodo->configuracion->largo_linea+2] == 1){
@@ -31,10 +29,10 @@ void semaforo(Nodo *nodo){
 		nodo->sms_2=nodo->sms[i*nodo->configuracion->largo_linea+9];
 
 		escribir_bitacora(nodo->configuracion->f,nodo->pid,nodo->hora,nodo->minuto,
-									nodo->dia,nodo->mes,nodo->anno,nodo->sms_1,nodo->sms_2);
+									nodo->dia,nodo->mes,nodo->anno,nodo->sms_1,nodo->sms_2,nodo->pid_mesajero);
 
 		cambio=0;
-
+		estado(nodo,2);
 	}else{
 		estado(nodo,4);
 	}
@@ -57,9 +55,21 @@ void semaforo(Nodo *nodo){
 
 	pthread_mutex_unlock(&lock);
 
+	for(int i=0;i<20;i++){
+		if(nodo->estado[14+i*2]!=0){
+			if(nodo->estado[14+(i*2)+1] == 0){
+				nodo->proceso=0;
+				sem_post (nodo->semaforo_1);
+			}
+		}
+		if(nodo->estado[114+i*2]!=0){
+			if(nodo->estado[114+i*2+1] == 0){
+				nodo->proceso=0;
+				sem_post (nodo->semaforo_1);
+			}
+		}
+	}
 
-
-	estado(nodo,2);
 	sleep(nodo->configuracion->tiempo_escribir);
 
 	nodo->proceso--;

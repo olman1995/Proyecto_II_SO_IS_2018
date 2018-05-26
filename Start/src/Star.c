@@ -19,9 +19,11 @@
 
 int main(int argc, int *argv[]) {
 
-
-	//int lineas = strtol(argv[1], NULL, 10);
 	int lineas = 20;
+	if(argc>1){
+		lineas = strtol(argv[1], NULL, 10);
+	}
+
 	int largo_linea = 10;
 	int tamano = lineas * largo_linea;
 
@@ -41,7 +43,7 @@ int main(int argc, int *argv[]) {
     }
 
     //estados
-    int informacion = 10;
+    int informacion = 14;
     int writers = 20;
     int readers = 20;
     int readers_selfish = 20;

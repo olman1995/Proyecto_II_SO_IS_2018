@@ -2,9 +2,9 @@
  ============================================================================
  Name        : Final.c
  Author      : Olman
- Version     : 0.0.2
+ Version     : 0.0.6
  Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Description : Final
  ============================================================================
  */
 #include <stdio.h>
